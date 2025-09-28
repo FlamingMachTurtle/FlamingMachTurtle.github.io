@@ -1,0 +1,51 @@
+/* Custom site-wide styles will go here. */
+
+body {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.headshot-frame {
+    max-width: 12rem;
+    margin: 0 auto 1.5rem;
+}
+
+.headshot-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0.5rem;
+}
+
+.project-card .project-image {
+    margin-top: 1rem;
+}
+
+.movie-callout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.movie-poster {
+    max-width: 7rem;
+    height: auto;
+}
+
+@media screen and (min-width: 640px) {
+    .headshot-frame {
+        max-width: 14rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .headshot-frame {
+        max-width: 16rem;
+    }
+    .movie-poster {
+        max-width: 8rem;
+    }
+}
