@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- ... existing code ... -->
+<head>
+<!-- ... existing code ... -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume | Personal Website</title>
+    <link rel="stylesheet" href="../css/foundation.css">
+    <link rel="stylesheet" href="../css/site.css">
+</head>
+<body>
+<!-- ... existing code ... -->
+    <div class="off-canvas-wrapper">
+<!-- ... existing code ... -->
+        <div class="off-canvas position-left" id="offCanvas" data-off-canvas>
+            <button class="close-button" aria-label="Close menu" type="button" data-close>
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <ul class="vertical menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="resume.html" aria-current="page">Resume</a></li>
+                <li><a href="fun.html">Fun Stuff</a></li>
+            </ul>
+        </div>
+        <div class="off-canvas-content" data-off-canvas-content>
+            <div class="grid-container">
+                <header class="grid-x grid-padding-x">
+                    <div class="cell small-12">
+                        <h1>Resume</h1>
+                        <p class="lead">Academic background, professional experience, and specialized skills in automation and rapid prototyping.</p>
+                        <button type="button" class="button" data-toggle="offCanvas">Menu</button>
+                    </div>
+                </header>
+
+                <section class="grid-x grid-padding-x resume-section">
+                    <div class="cell small-12">
+                        <h2>Education</h2>
+                        <ul class="resume-list">
+                            <li>
+                                <strong>University of St. Thomas</strong> — Bachelor of Science, Computer Science Major<br>
+                                Minor in Game Design | Expected Jan 2026 <br>
+                                <span class="resume-detail">Relevant Coursework: Game Design, Creative Coding, Advanced Business Intelligence Development, Computer Architecture</span><br>
+                                <a href="https://www.stthomas.edu/" target="_blank" rel="noopener">stthomas.edu</a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="grid-x grid-padding-x resume-section">
+                    <div class="cell small-12">
+                        <h2>Work Experience</h2>
+                    </div>
+                    <div class="cell small-12 medium-6">
+                        <article class="callout">
+                            <h3>Owner / Software Engineer — Big Chuck Data LLC</h3>
+                            <div class="resume-detail">Richfield, MN | August 2024 – Present</div>
+                            <ul class="simple-list">
+                                <li>Developed an enterprise eBay→Instagram automation pipeline with 100% production success rate, powered by a CSV staging architecture that reduced API calls from 100+ to just 10 while keeping performance above 90% efficiency.</li>
+                                <li>Collaborated with a Japan-based startup on an iOS album filter that lets users sort media by type, orientation, and spatial formats.</li>
+                            </ul>
+                        </article>
+                    </div>
+                    <div class="cell small-12 medium-6">
+                        <article class="callout">
+                            <h3>Software Development Intern — Honey Smitten</h3>
+                            <div class="resume-detail">October 2022 – Present (still do random contract work for them)</div>
+                            <ul class="simple-list">
+                                <li>Created a web app to calculate and optimize profit margins across supplier purchasing scenarios.</li>
+                                <li>Automated invoice tracking in Google Sheets to improve decision-making visibility.</li>
+                                <li>Represented the company at trade shows, assisting with demos and buyer relations.</li>
+                            </ul>
+                        </article>
+                    </div>
+                    <div class="cell small-12 medium-6">
+                        <article class="callout">
+                            <h3>Builder / Play Tester — Hydreon Corporation (Lifeboat)</h3>
+                            <div class="resume-detail">September 2020 – May 2021</div>
+                            <ul class="simple-list">
+                                <li>Led QA passes for Lifeboat minigames by designing test checklists, logging bugs, and coordinating fixes with designers.</li>
+                                <li>Built adventure maps and environments published on the Minecraft Bedrock marketplace, including the One Block Challenge release.</li>
+                                <li>Balanced creative world-building with gameplay requirements across server events and downloadable content.</li>
+                            </ul>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="grid-x grid-padding-x resume-section">
+                    <div class="cell small-12">
+                        <h2>Skills</h2>
+                        <p><strong>Programming & Development:</strong> Python, Java, JavaScript, C++, C, HTML/CSS, SQL, SwiftUI, Node.js, React<br>
+                        <strong>Tools:</strong> JetBrains IDEs, UNIX/Linux, Visual Studio, Eclipse, Xcode, Power BI<br>
+                        <strong>Specialized Expertise:</strong> API Integration (eBay Trading API, Instagram Graph API v19.0, Google Sheets API), Image Processing (PIL/Pillow), Business Automation, CSV Staging Architecture, Enterprise Development Under Pressure<br>
+                        <strong>Languages:</strong> Japanese (Intermediate), Hebrew (Basic)</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script src="../js/vendor/jquery.js"></script>
+    <script src="../js/vendor/what-input.js"></script>
+    <script src="../js/vendor/foundation.js"></script>
+    <script>
+        $(document).foundation();
+    </script>
+</body>
+</html>
