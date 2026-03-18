@@ -1,0 +1,55 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = 'Eli Goldberger — Developer portfolio. Computer Science major specializing in automation, rapid prototyping, and practical tech.' } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://flamingmachturtle.github.io');
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" sizes="any" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content={description} />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title} | Eli Goldberger</title>
+		<link rel="canonical" href={canonicalURL.href} />
+		<meta property="og:title" content={`${title} | Eli Goldberger`} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+	</head>
+	<body>
+		<a href="#main-content" class="skip-link">Skip to main content</a>
+		<header class="site-header" role="banner">
+			<nav class="nav" aria-label="Main">
+				<a href="/" class="nav-home">Eli Goldberger</a>
+				<ul class="nav-links">
+					<li><a href="/" class={Astro.url.pathname === '/' ? 'active' : ''}>Home</a></li>
+					<li><a href="/projects/" class={Astro.url.pathname.startsWith('/projects') ? 'active' : ''}>Projects</a></li>
+					<li><a href="/resume/" class={Astro.url.pathname.startsWith('/resume') ? 'active' : ''}>Resume</a></li>
+					<li><a href="/fun/" class={Astro.url.pathname.startsWith('/fun') ? 'active' : ''}>Fun Stuff</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main id="main-content" class="main" tabindex="-1">
+			<slot />
+		</main>
+		<footer class="site-footer" role="contentinfo">
+			<p class="footer-contact">
+				<a href="mailto:eligoldberger5@gmail.com">eligoldberger5@gmail.com</a>
+				<span aria-hidden="true"> · </span>
+				<a href="https://www.linkedin.com/in/eli-goldberger-b3b440212/" target="_blank" rel="noopener">LinkedIn</a>
+				<span aria-hidden="true"> · </span>
+				<a href="https://github.com/FlamingMachTurtle" target="_blank" rel="noopener">GitHub</a>
+			</p>
+			<p class="footer-copy">© {new Date().getFullYear()} Eli Goldberger</p>
+		</footer>
+	</body>
+</html>

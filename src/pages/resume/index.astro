@@ -1,0 +1,434 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="Resume"
+	description="Eli Goldberger — academic background, tutoring experience, software engineering, and technical skills."
+>
+	<div class="resume-bg">
+	<div class="paper-stage">
+		<div class="toolbar" role="toolbar" aria-label="Resume actions">
+			<a href="/resume/resue.pdf" download="Eli Goldberger Resume.pdf" class="tool-link" title="Download PDF">
+				<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+				Download
+			</a>
+			<button type="button" class="tool-link" id="show-pdf-btn" title="View & print the original PDF">
+				<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+				Print
+			</button>
+		</div>
+
+		<article class="paper" aria-label="Resume">
+			<!-- UST logo top-right -->
+			<img src="/images/resume/ust-logo.png" alt="University of St. Thomas crest" class="ust-logo" />
+
+			<!-- Header -->
+			<header class="paper-head">
+				<h1 class="name">Eli Goldberger</h1>
+				<p class="contact-row">
+					<a href="https://github.com/FlamingMachTurtle">github.com/FlamingMachTurtle</a>
+					<span class="sep">|</span>
+					<a href="https://flamingmachturtle.github.io">flamingmachturtle.github.io</a>
+					<span class="sep">|</span>
+					<a href="https://www.linkedin.com/in/eli-goldberger-b3b440212/" target="_blank" rel="noopener">linkedin.com/in/eli-goldberger</a>
+				</p>
+				<p class="contact-row">
+					eligoldberger5@gmail.com
+					<span class="sep">|</span>
+					651-315-4714
+					<span class="sep">|</span>
+					Richfield, MN
+				</p>
+			</header>
+
+			<hr class="divider" />
+
+			<!-- SUMMARY -->
+			<section class="sect">
+				<h2>Summary</h2>
+				<p class="body-text">
+					Student tutor experienced supporting middle school learners through small-group instruction and 1:1 academic mentoring. Strong at building positive routines, promoting independent problem-solving, and collaborating with staff to support student growth. Reliable and organized with structured planning, follow-through, and clear communication.
+				</p>
+			</section>
+
+			<!-- RELEVANT EXPERIENCE -->
+			<section class="sect">
+				<h2>Relevant Experience</h2>
+
+				<div class="entry">
+					<div class="row">
+						<strong>AVID Tutoring</strong>
+						<span class="date">Fall 2025 – Present</span>
+					</div>
+					<div class="sub">Tutor</div>
+					<ul>
+						<li>Provide 1:1 and small-group academic support using inquiry-based questioning to build independent problem-solving.</li>
+						<li>Tutoring at multiple school sites; adapt structure and communication to different classroom routines and learner needs.</li>
+						<li>Reinforce positive learning habits (planning, organization, self-advocacy) to improve confidence and engagement.</li>
+						<li>Help maintain a focused, supportive environment by reinforcing expectations and redirecting off-task behavior.</li>
+					</ul>
+				</div>
+			</section>
+
+			<!-- EDUCATION -->
+			<section class="sect">
+				<h2>Education</h2>
+
+				<div class="entry">
+					<div class="row">
+						<span><strong>University of St. Thomas</strong>, St. Paul, MN</span>
+						<span class="date">May 2026</span>
+					</div>
+					<div class="sub">B.S. Candidate, Computer Science; Minors: Game Design and Mathematics</div>
+					<ul>
+						<li><strong>Relevant Strengths:</strong> clear explanation of complex concepts, structured coaching/support, analytical problem-solving.</li>
+					</ul>
+				</div>
+			</section>
+
+			<!-- ADDITIONAL EXPERIENCE -->
+			<section class="sect">
+				<h2>Additional Experience</h2>
+
+				<div class="entry">
+					<div class="row">
+						<div class="row-left">
+							<img src="/images/resume/bcd-logo.png" alt="Big Chuck Data LLC logo" class="inline-logo" />
+							<strong>Big Chuck Data LLC</strong>
+						</div>
+						<span class="date">August 2024 – Present</span>
+					</div>
+					<div class="sub">Owner / Software Engineer</div>
+					<ul>
+						<li>Translate client goals into clear requirements and deliverables; communicate progress and iterate based on feedback.</li>
+						<li>Debug production issues and deliver reliable fixes with attention to end-user impact.</li>
+						<li>Collaborate with stakeholders on UI/UX decisions and document changes to keep work aligned and on schedule.</li>
+					</ul>
+				</div>
+
+				<div class="entry">
+					<div class="row">
+						<strong>Honey Smitten</strong>
+						<span class="date">Spring 2024 – Present</span>
+					</div>
+					<div class="sub">Software Development Intern / Operations Support</div>
+					<ul>
+						<li>Built tracking/reporting tools (Google Sheets automation; invoice workflow) to improve operational consistency.</li>
+						<li>Designed a QuickBooks Online inventory workflow (lot numbers, flavors, fulfillment); supported outreach/events.</li>
+					</ul>
+				</div>
+			</section>
+
+			<!-- PROJECTS -->
+			<section class="sect">
+				<h2>Projects</h2>
+
+				<div class="entry compact">
+					<div class="row">
+						<strong>Contract-Based UI/UX Development</strong>
+						<span class="date">2024 – Present</span>
+					</div>
+					<p class="body-text">Designed SwiftUI components; improved usability and UI consistency through iterative feedback.</p>
+				</div>
+
+				<div class="entry compact">
+					<div class="row">
+						<strong>Automated Instagram Poster</strong>
+						<span class="date">2024</span>
+					</div>
+					<p class="body-text">Automated consistent image formatting (padding/alignment/branding overlay) for posting workflows.</p>
+				</div>
+			</section>
+
+			<!-- SKILLS -->
+			<section class="sect last">
+				<h2>Skills</h2>
+				<div class="skills-block">
+					<p><strong>Technical:</strong> Python, Java, JavaScript, SQL, HTML/CSS, React, Node.js, REST APIs, Google Sheets, Power BI/DAX</p>
+					<p><strong>Instruction&nbsp;&amp;&nbsp;Coaching:</strong> Small-group instruction, 1:1 tutoring, inquiry-based coaching, student engagement, routines/expectations</p>
+					<p><strong>Languages:</strong> Japanese (intermediate); Hebrew (basic)</p>
+				</div>
+			</section>
+		</article>
+
+		<!-- PDF viewer -->
+		<section id="pdf-section" class="pdf-section" aria-label="Downloadable PDF resume" hidden>
+			<div class="pdf-bar">
+				<span class="pdf-label">Original PDF</span>
+				<a href="/resume/resue.pdf" download="Eli Goldberger Resume.pdf" class="tool-link">Download</a>
+				<a href="/resume/resue.pdf" target="_blank" rel="noopener" class="tool-link">Open in New Tab</a>
+				<button type="button" class="tool-link" id="hide-pdf-btn">Close</button>
+			</div>
+			<div class="pdf-embed">
+				<iframe
+					id="pdf-iframe"
+					title="Eli Goldberger Resume (PDF)"
+					class="pdf-iframe"
+					loading="lazy"
+				></iframe>
+			</div>
+		</section>
+	</div>
+	</div>
+</BaseLayout>
+
+<script>
+	const showBtn = document.getElementById('show-pdf-btn');
+	const hideBtn = document.getElementById('hide-pdf-btn');
+	const section = document.getElementById('pdf-section');
+	const iframe  = document.getElementById('pdf-iframe') as HTMLIFrameElement;
+
+	function openPdf() {
+		if (!section) return;
+		section.hidden = false;
+		if (iframe && !iframe.src) iframe.src = '/resume/resue.pdf#toolbar=1';
+		section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	}
+	function closePdf() {
+		if (!section) return;
+		section.hidden = true;
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	}
+
+	showBtn?.addEventListener('click', openPdf);
+	hideBtn?.addEventListener('click', closePdf);
+
+	const paper = document.querySelector('.paper') as HTMLElement;
+	if (paper) {
+		requestAnimationFrame(() => {
+			const rect = paper.getBoundingClientRect();
+			const headerH = document.querySelector('.site-header')?.getBoundingClientRect().height ?? 0;
+			const viewH = window.innerHeight - headerH;
+			const paperH = rect.height;
+			const idealOffset = Math.max(0, (viewH - paperH) / 2);
+			const scrollTarget = window.scrollY + rect.top - headerH - idealOffset;
+			window.scrollTo({ top: Math.max(0, scrollTarget), behavior: 'instant' });
+		});
+	}
+</script>
+
+<style>
+	.resume-bg {
+		background: #f1f3f5;
+		margin: -2rem calc(-1 * var(--space-md, 1.5rem)) 0;
+		padding: 1.5rem var(--space-md, 1.5rem) 0;
+	}
+
+	.paper-stage {
+		max-width: 52rem;
+		margin: 0 auto;
+		padding: 0 1rem 3rem;
+	}
+
+	/* Toolbar */
+	.toolbar {
+		display: flex;
+		justify-content: flex-end;
+		gap: 0.75rem;
+		margin-bottom: 0.75rem;
+	}
+	.tool-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.3rem;
+		padding: 0.3rem 0.6rem;
+		font-size: 0.78rem;
+		font-family: inherit;
+		color: #64748b;
+		background: none;
+		border: 1px solid transparent;
+		border-radius: 0.25rem;
+		text-decoration: none;
+		cursor: pointer;
+		transition: color 0.15s, border-color 0.15s;
+	}
+	.tool-link:hover {
+		color: #334155;
+		border-color: #cbd5e1;
+	}
+
+	/* Paper */
+	.paper {
+		position: relative;
+		background: #fff;
+		border: 1px solid #dde1e6;
+		border-radius: 2px;
+		padding: 2.75rem 3rem 2.25rem;
+		box-shadow:
+			0 1px 3px rgba(0,0,0,0.06),
+			0 6px 16px rgba(0,0,0,0.04);
+		font-size: 0.88rem;
+		line-height: 1.45;
+		color: #1e293b;
+	}
+
+	/* UST logo — top-right corner like LaTeX */
+	.ust-logo {
+		position: absolute;
+		top: 1.5rem;
+		right: 2.5rem;
+		height: 2.6rem;
+		width: auto;
+	}
+
+	/* Inline logo next to company name */
+	.inline-logo {
+		height: 1rem;
+		width: auto;
+		vertical-align: text-bottom;
+		margin-right: 0.3rem;
+		border-radius: 2px;
+	}
+	.row-left {
+		display: inline-flex;
+		align-items: center;
+	}
+
+	/* Header */
+	.paper-head {
+		text-align: center;
+		margin-bottom: 0.25rem;
+	}
+	.name {
+		font-size: 1.55rem;
+		font-weight: 700;
+		letter-spacing: 0.01em;
+		margin: 0 0 0.2rem;
+		color: #0f172a;
+	}
+	.contact-row {
+		font-size: 0.78rem;
+		color: #475569;
+		margin: 0;
+		line-height: 1.55;
+	}
+	.contact-row a {
+		color: #475569;
+		text-decoration: none;
+	}
+	.contact-row a:hover { text-decoration: underline; color: #1e293b; }
+	.sep {
+		margin: 0 0.3rem;
+		color: #94a3b8;
+	}
+
+	.divider {
+		border: none;
+		border-top: 1.5px solid #1e293b;
+		margin: 0.5rem 0 0.65rem;
+	}
+
+	/* Sections */
+	.sect {
+		margin-bottom: 0.85rem;
+	}
+	.sect.last { margin-bottom: 0; }
+	.sect h2 {
+		font-size: 0.72rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: #0f172a;
+		margin: 0 0 0.4rem;
+		padding-bottom: 0.2rem;
+		border-bottom: 1px solid #cbd5e1;
+	}
+
+	.body-text {
+		margin: 0;
+		font-size: 0.86rem;
+		line-height: 1.5;
+	}
+
+	.entry { margin-bottom: 0.7rem; }
+	.entry:last-child { margin-bottom: 0; }
+	.entry.compact { margin-bottom: 0.5rem; }
+
+	.row {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		flex-wrap: wrap;
+		gap: 0.35rem;
+	}
+	.date {
+		font-size: 0.78rem;
+		color: #64748b;
+		white-space: nowrap;
+	}
+	.sub {
+		font-size: 0.84rem;
+		color: #475569;
+		font-style: italic;
+		margin-bottom: 0.15rem;
+	}
+
+	.paper ul {
+		margin: 0.15rem 0 0;
+		padding-left: 1.15rem;
+		font-size: 0.86rem;
+		line-height: 1.45;
+	}
+	.paper li { margin-bottom: 0.15rem; }
+	.paper li:last-child { margin-bottom: 0; }
+
+	/* Skills — compact LaTeX-style lines */
+	.skills-block p {
+		margin: 0 0 0.1rem;
+		font-size: 0.84rem;
+		line-height: 1.5;
+	}
+	.skills-block p:last-child { margin-bottom: 0; }
+
+	/* PDF section */
+	.pdf-section {
+		margin-top: 2rem;
+	}
+	.pdf-bar {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 0.5rem 0.75rem;
+		background: #f8fafc;
+		border: 1px solid #e2e8f0;
+		border-bottom: none;
+		border-radius: 0.4rem 0.4rem 0 0;
+		font-size: 0.8rem;
+	}
+	.pdf-label {
+		font-weight: 600;
+		color: #475569;
+		margin-right: auto;
+	}
+	.pdf-embed {
+		border: 1px solid #e2e8f0;
+		border-radius: 0 0 0.4rem 0.4rem;
+		overflow: hidden;
+		background: #f5f5f5;
+	}
+	.pdf-iframe {
+		width: 100%;
+		height: 80vh;
+		min-height: 600px;
+		border: 0;
+		display: block;
+	}
+
+	@media (max-width: 640px) {
+		.paper { padding: 2rem 1.25rem 1.5rem; }
+		.ust-logo { height: 2rem; top: 1rem; right: 1rem; }
+		.name { font-size: 1.3rem; }
+	}
+
+	@media print {
+		.toolbar, .pdf-section { display: none; }
+		.paper-stage { padding: 0; max-width: none; }
+		.paper {
+			border: none;
+			box-shadow: none;
+			border-radius: 0;
+			padding: 0;
+		}
+	}
+</style>

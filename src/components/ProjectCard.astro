@@ -1,0 +1,144 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	tech: string[];
+	image: string;
+	imageAlt: string;
+	imageFirst?: boolean;
+	demoUrl?: string;
+	extraImages?: { src: string; alt: string }[];
+}
+
+const { title, description, tech = [], image, imageAlt, imageFirst = false, demoUrl } = Astro.props;
+---
+
+<article class:list={['card', { 'card--reversed': imageFirst }]}>
+	<div class="card-body">
+		<h2 class="card-title">{title}</h2>
+		<p class="card-desc">{description}</p>
+		{tech.length > 0 && (
+			<ul class="card-tech">
+				{tech.map((t) => (
+					<li>{t}</li>
+				))}
+			</ul>
+		)}
+		{demoUrl && (
+			<a href={demoUrl} class="card-link" target="_blank" rel="noopener">
+				View showcase
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+			</a>
+		)}
+	</div>
+	<div class="card-media">
+		<img src={image} alt={imageAlt} loading="lazy" decoding="async" />
+	</div>
+</article>
+
+<style>
+	.card {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0;
+		background: #fff;
+		border: 1px solid #e2e8f0;
+		border-radius: 0.5rem;
+		overflow: hidden;
+		transition: box-shadow 0.2s;
+	}
+	.card:hover {
+		box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+	}
+	.card--reversed {
+		direction: rtl;
+	}
+	.card--reversed > * {
+		direction: ltr;
+	}
+
+	.card-body {
+		padding: 1.75rem 1.5rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.card-title {
+		font-size: 1.25rem;
+		font-weight: 700;
+		margin: 0 0 0.6rem;
+		color: #0f172a;
+		line-height: 1.3;
+	}
+
+	.card-desc {
+		font-size: 0.9rem;
+		line-height: 1.55;
+		color: #334155;
+		margin: 0 0 0.75rem;
+	}
+
+	.card-tech {
+		list-style: none;
+		margin: 0 0 0.75rem;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem;
+	}
+	.card-tech li {
+		font-size: 0.75rem;
+		padding: 0.2rem 0.6rem;
+		background: #f1f5f9;
+		border: 1px solid #e2e8f0;
+		border-radius: 999px;
+		color: #475569;
+		white-space: nowrap;
+	}
+
+	.card-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.3rem;
+		font-size: 0.88rem;
+		font-weight: 500;
+		color: #2563eb;
+		text-decoration: none;
+		margin-top: auto;
+	}
+	.card-link:hover {
+		text-decoration: underline;
+	}
+
+	.card-media {
+		position: relative;
+		overflow: hidden;
+		height: 16rem;
+		background: #f1f5f9;
+		flex-shrink: 0;
+	}
+	.card-media img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	@media (max-width: 640px) {
+		.card {
+			grid-template-columns: 1fr;
+		}
+		.card--reversed {
+			direction: ltr;
+		}
+		.card-media {
+			min-height: 12rem;
+			max-height: 16rem;
+			order: -1;
+		}
+		.card-body {
+			padding: 1.25rem 1rem;
+		}
+	}
+</style>

@@ -1,0 +1,130 @@
+/* Base Layout Styles */
+:root {
+	--color-text: #1a1a1a;
+	--color-bg: #fff;
+	--color-muted: #555;
+	--color-border: #e0e0e0;
+	--color-link: #0066cc;
+	--color-link-hover: #004499;
+	--font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	--space-xs: 0.5rem;
+	--space-sm: 1rem;
+	--space-md: 1.5rem;
+	--space-lg: 2rem;
+	--max-width: 960px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+	margin: 0;
+	font-family: var(--font-sans);
+	color: var(--color-text);
+	background: var(--color-bg);
+	line-height: 1.6;
+}
+
+/* Skip link */
+.skip-link {
+	position: absolute;
+	top: -100px;
+	left: var(--space-sm);
+	z-index: 100;
+	padding: var(--space-xs) var(--space-sm);
+	background: var(--color-text);
+	color: var(--color-bg);
+	text-decoration: none;
+	border-radius: 4px;
+	font-weight: 500;
+	transition: top 0.2s;
+}
+.skip-link:focus {
+	top: var(--space-sm);
+	outline: 2px solid var(--color-link);
+	outline-offset: 2px;
+}
+
+/* Header */
+.site-header {
+	position: sticky;
+	top: 0;
+	z-index: 50;
+	background: var(--color-bg);
+	border-bottom: 1px solid var(--color-border);
+	box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.nav {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: var(--space-sm) var(--space-md);
+	gap: var(--space-md);
+}
+.nav-home {
+	font-weight: 700;
+	font-size: 1.125rem;
+	color: var(--color-text);
+	text-decoration: none;
+}
+.nav-home:hover {
+	color: var(--color-link);
+}
+.nav-links {
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	gap: var(--space-md);
+}
+.nav-links a {
+	color: var(--color-muted);
+	text-decoration: none;
+	font-weight: 500;
+}
+.nav-links a:hover,
+.nav-links a.active {
+	color: var(--color-link);
+}
+.nav-links a:focus {
+	outline: 2px solid var(--color-link);
+	outline-offset: 2px;
+	border-radius: 2px;
+}
+
+/* Main */
+.main {
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: var(--space-lg) var(--space-md);
+	min-height: 60vh;
+}
+
+.main:focus {
+	outline: none;
+}
+
+/* Footer */
+.site-footer {
+	background: #f5f5f5;
+	border-top: 1px solid var(--color-border);
+	padding: var(--space-md) var(--space-md);
+	text-align: center;
+	font-size: 0.9rem;
+	color: var(--color-muted);
+}
+.footer-contact {
+	margin: 0 0 var(--space-xs) 0;
+}
+.footer-contact a {
+	color: var(--color-link);
+	text-decoration: none;
+}
+.footer-contact a:hover {
+	text-decoration: underline;
+}
+.footer-copy {
+	margin: 0;
+}

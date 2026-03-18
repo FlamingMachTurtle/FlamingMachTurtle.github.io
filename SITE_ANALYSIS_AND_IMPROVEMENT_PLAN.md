@@ -1,8 +1,31 @@
 # Portfolio Site Analysis & Improvement Plan
 
 **Analyzed:** March 18, 2025  
+**Last Updated:** March 18, 2025  
 **Site Type:** Developer/Consultant Portfolio  
 **Pages:** Home, Projects, Resume, Fun Stuff
+
+> **Related:** See [REPO_OVERHAUL_AUDIT.md](REPO_OVERHAUL_AUDIT.md) for the full technical audit and overhaul planning context.
+
+---
+
+## Migration Status (Astro Overhaul — March 2025)
+
+The site has been migrated to **Astro v6** with shared layout and content collections. Items addressed:
+
+| Original Issue | Status |
+|----------------|--------|
+| No persistent nav | **Fixed** — Sticky header with Home \| Projects \| Resume \| Fun Stuff |
+| foundation.js missing | **Resolved** — Astro layout; no Foundation dependency |
+| Typo "proccesing" | **Fixed** → "processing" |
+| Duplicated layout | **Fixed** — Single `BaseLayout.astro` |
+| No meta descriptions / SEO | **Fixed** — Meta, canonical, Open Graph in layout |
+| Skip-to-content link | **Added** |
+| Download/Print resume | **Preserved** — Same UX on Resume page |
+| Project content | **Migrated** — Content collections in `src/content/projects/` |
+| Legacy Foundation/jQuery | **Archived** — Moved to `_legacy/` |
+
+**Remaining (optional):** Fix PDF filename `resue.pdf` → `resume.pdf`; add favicon; consider Tailwind for further styling.
 
 ---
 
@@ -80,7 +103,7 @@
 | Visual Design | 2/5 | Same minimal styling. Work experience in callout boxes. |
 | First Impression | 2/5 | Dense text. Skills section is a single paragraph—hard to scan. |
 | Content Presentation | 2/5 | Education and experience are present but not visually prioritized. |
-| Technical Polish | 3/5 | Links to St. Thomas work. No downloadable PDF link. |
+| Technical Polish | 3/5 | Download PDF, Open in New Tab, and Print actions exist. PDF filename typo: `resue.pdf` should be `resume.pdf`. |
 
 **Overall Resume Score: 2.3/5**
 
@@ -88,9 +111,10 @@
 - Education, work history, and skills all present
 - Big Chuck Data, Honey Smitten, Hydreon roles well described
 - External link to University of St. Thomas
+- Download PDF, Open in New Tab, and Print controls implemented; PDF embedded in iframe
 
 **Weaknesses:**
-- No "Download PDF" button—recruiters expect this
+- Resume PDF filename typo (`resue.pdf`) — rename file or update links
 - Skills as one block of text—consider tags, icons, or grouped layout
 - "October 2022 – Present (still do random contract work)" reads informal
 - Work experience cards don't distinguish current vs past roles
@@ -141,7 +165,7 @@ Home → [Menu] → Off-canvas: Home | Projects | Resume | Fun Stuff
 | Path | Purpose | Friction Points |
 |------|---------|------------------|
 | Home → Projects | Show work | No CTA from Home to Projects; user must open Menu |
-| Home → Resume | Get hired | No "Download Resume" or "View Full Resume" CTA |
+| Home → Resume | Get hired | Download/Print controls exist on Resume page; no CTA in header or on Home |
 | Projects → External | See demos | Only 90-Day Challenge has a link; others lack live/demo links |
 | Fun Stuff → GitHub | See experiments | Redundant with header; could link 90-Day showcase instead |
 
@@ -156,7 +180,7 @@ Home → [Menu] → Off-canvas: Home | Projects | Resume | Fun Stuff
 | Default Foundation typography | No brand identity | All |
 | No favicon | Unprofessional in tabs | All |
 | Typo "proccesing" | Attention to detail | Home |
-| No PDF resume download | Missed recruiter expectation | Resume |
+| PDF filename typo (`resue.pdf`) | Unprofessional, risk of broken links | Resume |
 | Missing project links | Lost opportunities | Projects |
 | Commented-out code | Incomplete feel | Fun Stuff |
 
@@ -168,29 +192,30 @@ Home → [Menu] → Off-canvas: Home | Projects | Resume | Fun Stuff
 1. **Fix typo:** "proccesing" → "processing"
 2. **Add favicon** — Even a simple "E" or initial
 3. **Add persistent nav bar** — Sticky header with Home | Projects | Resume | Fun Stuff (collapse to hamburger on mobile)
-4. **Add "Download Resume"** — PDF link on Resume page and in header/footer
-5. **Remove or enable movie posters** — Uncomment and style, or delete the block
+4. **Restore `foundation.js`** — Critical: file is referenced but missing from repo; off-canvas menu will not work without it
+5. **Fix PDF filename:** Rename `resue.pdf` → `resume.pdf` and update links
+6. **Add "Download Resume" to header/Home** — PDF link exists on Resume page; add prominent CTA in header and/or Home
+7. **Remove or enable movie posters** — Uncomment and style, or delete the block
 
 ### P1 — Visual Upgrade (4–8 hours)
-6. **Define a color palette** — Primary, secondary, accent (e.g., deep navy + warm accent)
-7. **Custom typography** — Replace system fonts with Google Fonts (e.g., DM Sans + a display font)
-8. **Hero section on Home** — Larger headshot, bold tagline, clear CTA ("View Projects" / "Download Resume")
-9. **Card polish** — Borders, subtle shadows, hover states, rounded corners
-10. **Headshot frame** — Border, shadow, or subtle background to make it pop
+8. **Define a color palette** — Primary, secondary, accent (e.g., deep navy + warm accent)
+9. **Custom typography** — Replace system fonts with Google Fonts (e.g., DM Sans + a display font)
+10. **Hero section on Home** — Larger headshot, bold tagline, clear CTA ("View Projects" / "Download Resume")
+11. **Card polish** — Borders, subtle shadows, hover states, rounded corners
+12. **Headshot frame** — Border, shadow, or subtle background to make it pop
 
 ### P2 — Content & UX (4–6 hours)
-11. **Project CTAs** — Add "View Demo" / "Source" / "Case Study" links for each project
-12. **Skills as tags** — Convert skills paragraph to pill/badge layout
-13. **Resume PDF** — Create and host a PDF, link from Resume + header
-14. **Footer** — Contact links, nav, copyright
-15. **Breadcrumbs or page indicator** — Show current section in nav
+13. **Project CTAs** — Add "View Demo" / "Source" / "Case Study" links for each project
+14. **Skills as tags** — Convert skills paragraph to pill/badge layout (Resume page content is in PDF; consider adding skills summary in HTML)
+15. **Footer** — Contact links, nav, copyright
+16. **Breadcrumbs or page indicator** — Show current section in nav
 
 ### P3 — Advanced Polish (8+ hours)
-16. **Smooth scroll / transitions** — Subtle page transitions or scroll effects
-17. **Project filtering** — Filter by type (Automation, Mobile, Web, Game Dev)
-18. **Dark mode toggle** — Optional for developer portfolios
-19. **Performance** — Lazy-load images, optimize Foundation bundle if possible
-20. **Accessibility audit** — Contrast, focus states, ARIA labels
+17. **Smooth scroll / transitions** — Subtle page transitions or scroll effects
+18. **Project filtering** — Filter by type (Automation, Mobile, Web, Game Dev)
+19. **Dark mode toggle** — Optional for developer portfolios
+20. **Performance** — Lazy-load images, optimize Foundation bundle if possible
+21. **Accessibility audit** — Contrast, focus states, ARIA labels
 
 ---
 
@@ -200,7 +225,7 @@ Home → [Menu] → Off-canvas: Home | Projects | Resume | Fun Stuff
 |------|---------|---------|
 | **Home** | 2.4/5 | Add hero, persistent nav, fix typo |
 | **Projects** | 2.4/5 | Add project links, improve card design |
-| **Resume** | 2.3/5 | PDF download, skills as tags |
+| **Resume** | 2.3/5 | Fix PDF filename, add skills summary/tags in HTML if desired |
 | **Fun Stuff** | 2.3/5 | Fix movie section, tighten copy |
 | **Site-Wide** | **2.4/5** | Nav, palette, typography |
 
@@ -208,7 +233,9 @@ Home → [Menu] → Off-canvas: Home | Projects | Resume | Fun Stuff
 
 ## Next Steps
 
-1. Choose a design direction (e.g., "Modern minimal" vs "Bold developer")
-2. Implement P0 items first
-3. Create a simple style guide (colors, fonts, spacing) in `site.css`
-4. Add a README to track versions and future goals (per project conventions)
+1. **Critical:** Restore missing `js/vendor/foundation.js` — off-canvas menu depends on it
+2. Choose a design direction (e.g., "Modern minimal" vs "Bold developer")
+3. Implement P0 items first
+4. Create a simple style guide (colors, fonts, spacing) in `site.css`
+5. Add a README to track versions and future goals (per project conventions)
+6. For full overhaul planning, use the [AI Research Prompt](AI_RESEARCH_PROMPT.md) with an external AI researcher to evaluate tech stacks and frameworks

@@ -1,0 +1,164 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+const projects = allProjects.sort((a, b) => (a.data.sortOrder ?? 99) - (b.data.sortOrder ?? 99));
+
+// Map project IDs to their inline gallery sections
+const galleries: Record<string, { heading: string; caption: string; items: { src: string; alt: string; cap: string }[] }> = {
+	'ebay-image-standardization': {
+		heading: 'Image Processing Results',
+		caption: 'Before-and-after outputs from the eBay automation pipeline.',
+		items: [
+			{ src: '/images/cruz-before.jpg', alt: 'Original product photo before processing', cap: 'Original product photo' },
+			{ src: '/images/cruz-after.jpg', alt: 'Standardized square product image after automation', cap: 'Standardized output' },
+		],
+	},
+	nutribot: {
+		heading: 'NutriBot Screens',
+		caption: 'Weekly planning dashboard and recipe selection workflow.',
+		items: [
+			{ src: '/images/nutri/mealPlanner.png', alt: 'NutriBot weekly meal planner showing calendar with nutrition totals', cap: 'Weekly planner' },
+			{ src: '/images/nutri/selectingMeal.png', alt: 'NutriBot recipe selection screen with filters and nutrition details', cap: 'Recipe selection' },
+		],
+	},
+	'hydreon-minecraft': {
+		heading: 'Hydreon Lifeboat Gallery',
+		caption: 'Builds and QA environments from the Lifeboat Minecraft server.',
+		items: [
+			{ src: '/images/mc-port/BossRoom.PNG', alt: 'Minecraft boss room arena built for Hydreon Lifeboat', cap: 'Boss room arena' },
+			{ src: '/images/mc-port/BossRoom2.PNG', alt: 'Alternate Minecraft boss room variation', cap: 'Arena variation' },
+			{ src: '/images/mc-port/Map1.PNG', alt: 'Adventure map terrain built for Hydreon Lifeboat server', cap: 'Adventure map' },
+			{ src: '/images/mc-port/Map1Moon.PNG', alt: 'Moon-themed floating island Minecraft map', cap: 'Moon island' },
+			{ src: '/images/mc-port/random.png', alt: 'Standalone Minecraft build experiment', cap: 'Build experiment' },
+		],
+	},
+};
+---
+
+<BaseLayout title="Projects" description="Eli Goldberger's projects: eBay automation, NutriBot, SwiftUI, Minecraft, and the 90-day challenge.">
+	<div class="page-header">
+		<h1>Projects</h1>
+		<p class="lead">A selection of work across client automation, app development, and personal experiments.</p>
+	</div>
+
+	<div class="projects-list">
+		{projects.map(({ id, data }) => {
+			const gallery = galleries[id];
+			return (
+				<div class="project-group">
+					<ProjectCard
+						title={data.title}
+						description={data.description}
+						tech={data.tech ?? []}
+						image={data.image}
+						imageAlt={data.imageAlt}
+						imageFirst={data.imageFirst}
+						demoUrl={data.demoUrl}
+					/>
+					{gallery && (
+						<div class="inline-gallery">
+							<div class="gallery-header">
+								<span class="gallery-title">{gallery.heading}</span>
+								<span class="gallery-caption">{gallery.caption}</span>
+							</div>
+							<div class:list={['gallery-grid', { 'gallery-grid--wide': gallery.items.length > 2 }]}>
+								{gallery.items.map((img) => (
+									<figure>
+										<img src={img.src} alt={img.alt} loading="lazy" decoding="async" />
+										<figcaption>{img.cap}</figcaption>
+									</figure>
+								))}
+							</div>
+						</div>
+					)}
+				</div>
+			);
+		})}
+	</div>
+</BaseLayout>
+
+<style>
+	.page-header {
+		margin-bottom: 2rem;
+	}
+	.page-header h1 {
+		margin-bottom: 0.25rem;
+	}
+	.lead {
+		font-size: 1.05rem;
+		color: #64748b;
+		margin: 0;
+	}
+
+	.projects-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+	}
+
+	.project-group {
+		margin-bottom: 2.5rem;
+	}
+	.project-group:last-child {
+		margin-bottom: 0;
+	}
+
+	/* Inline gallery sits directly under its card */
+	.inline-gallery {
+		margin-top: 0.75rem;
+		padding: 1rem 1.25rem;
+		background: #f8fafc;
+		border: 1px solid #e2e8f0;
+		border-top: none;
+		border-radius: 0 0 0.5rem 0.5rem;
+	}
+
+	.gallery-header {
+		display: flex;
+		align-items: baseline;
+		gap: 0.75rem;
+		margin-bottom: 0.75rem;
+		flex-wrap: wrap;
+	}
+	.gallery-title {
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: #334155;
+	}
+	.gallery-caption {
+		font-size: 0.8rem;
+		color: #64748b;
+	}
+
+	.gallery-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+		gap: 0.75rem;
+	}
+	.gallery-grid--wide {
+		grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+	}
+
+	.inline-gallery figure {
+		margin: 0;
+		background: #fff;
+		border: 1px solid #e2e8f0;
+		border-radius: 0.375rem;
+		overflow: hidden;
+		text-align: center;
+	}
+	.inline-gallery img {
+		width: 100%;
+		height: 9rem;
+		object-fit: cover;
+		display: block;
+	}
+	.inline-gallery figcaption {
+		padding: 0.35rem 0.5rem;
+		font-size: 0.78rem;
+		color: #64748b;
+	}
+</style>

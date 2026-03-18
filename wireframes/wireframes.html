@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Site Wireframe Mockups</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #f4f4f0;
+    --canvas: #fafaf8;
+    --border: #c8c8c0;
+    --frame: #e0dfd8;
+    --box: #ddddd6;
+    --img-box: #c4c4bc;
+    --text-dark: #1a1a18;
+    --text-mid: #5a5a52;
+    --text-light: #9a9a90;
+    --accent: #2563eb;
+    --accent-light: #dbeafe;
+    --red: #ef4444;
+    --green: #22c55e;
+    --yellow: #f59e0b;
+    --tag-bg: #e8e8e0;
+    --nav-bg: #fff;
+    --note-bg: #fffbeb;
+    --note-border: #fcd34d;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text-dark);
+    padding: 2rem;
+  }
+
+  h1.main-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: var(--text-dark);
+  }
+  .subtitle {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    margin-bottom: 2.5rem;
+  }
+
+  /* Tab navigation */
+  .tabs {
+    display: flex;
+    gap: 0.25rem;
+    margin-bottom: 0;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0;
+  }
+  .tab {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    background: var(--frame);
+    color: var(--text-mid);
+    transition: all 0.15s;
+    position: relative;
+    bottom: -2px;
+    user-select: none;
+  }
+  .tab:hover { background: var(--box); color: var(--text-dark); }
+  .tab.active {
+    background: var(--canvas);
+    color: var(--accent);
+    border-color: var(--border);
+    border-bottom-color: var(--canvas);
+  }
+
+  /* Panel */
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* Browser chrome */
+  .browser {
+    background: var(--canvas);
+    border: 1px solid var(--border);
+    border-radius: 0 8px 8px 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  }
+  .browser-bar {
+    background: #e8e8e0;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot.r { background: #fc5c57; }
+  .dot.y { background: #fdbc2c; }
+  .dot.g { background: #33c948; }
+  .url-bar {
+    flex: 1;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-mid);
+  }
+
+  /* Two-column: wireframe + annotations */
+  .wf-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 0;
+  }
+  .wf-frame {
+    padding: 1.5rem;
+    background: var(--canvas);
+    border-right: 1px solid var(--frame);
+  }
+  .wf-notes {
+    padding: 1.25rem;
+    background: #f9f9f6;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .wf-notes h3 {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+  }
+
+  /* Annotation note */
+  .note {
+    background: var(--note-bg);
+    border-left: 3px solid var(--note-border);
+    padding: 0.5rem 0.65rem;
+    border-radius: 0 4px 4px 0;
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: var(--text-dark);
+  }
+  .note.fix { border-left-color: var(--red); background: #fff5f5; }
+  .note.new { border-left-color: var(--green); background: #f0fdf4; }
+  .note.keep { border-left-color: #94a3b8; background: #f8fafc; }
+
+  .note-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 0.2rem;
+    opacity: 0.6;
+  }
+
+  /* ========================
+     WIREFRAME PRIMITIVES
+  ======================== */
+  .wf-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 1.2rem;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    margin-bottom: 0.75rem;
+  }
+  .wf-logo { width: 7rem; height: 0.8rem; background: var(--box); border-radius: 3px; }
+  .wf-nav-links { display: flex; gap: 0.75rem; }
+  .wf-nav-link { height: 0.65rem; border-radius: 3px; background: var(--box); }
+  .wf-nav-link.active { background: var(--accent); }
+
+  .wf-section {
+    background: var(--canvas);
+    border: 1px solid var(--frame);
+    border-radius: 5px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.75rem;
+    position: relative;
+  }
+  .wf-section-label {
+    position: absolute;
+    top: 0.3rem;
+    right: 0.5rem;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-light);
+    background: var(--frame);
+    padding: 0.1rem 0.35rem;
+    border-radius: 3px;
+  }
+
+  .wf-img { background: var(--img-box); border-radius: 5px; }
+  .wf-line { height: 0.55rem; background: var(--box); border-radius: 3px; margin-bottom: 0.35rem; }
+  .wf-line.sm { height: 0.45rem; background: var(--frame); }
+  .wf-line.lg { height: 0.75rem; background: #b8b8b0; }
+  .wf-line.accent { background: var(--accent-light); }
+  .wf-line.w-80 { width: 80%; }
+  .wf-line.w-60 { width: 60%; }
+  .wf-line.w-40 { width: 40%; }
+  .wf-line.w-30 { width: 30%; }
+
+  .wf-pill {
+    display: inline-block;
+    height: 0.55rem;
+    background: var(--tag-bg);
+    border-radius: 999px;
+    margin: 0.15rem 0.15rem 0 0;
+  }
+
+  .wf-btn {
+    height: 1.6rem;
+    border-radius: 4px;
+    background: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wf-btn.ghost { background: var(--frame); }
+
+  .row { display: flex; gap: 0.75rem; align-items: flex-start; }
+  .col { flex: 1; }
+
+  .wf-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 0.65rem 0.75rem;
+    flex: 1;
+  }
+  .wf-card.accent-left { border-left: 3px solid var(--accent); }
+
+  .wf-circle { border-radius: 50%; background: var(--img-box); }
+
+  .wf-footer {
+    background: var(--frame);
+    padding: 0.6rem 1rem;
+    border-radius: 0 0 5px 5px;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .wf-footer .wf-line { width: 4rem; margin: 0; }
+
+  .badge {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 999px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .badge.fix { background: #fee2e2; color: var(--red); }
+  .badge.new { background: #dcfce7; color: #16a34a; }
+  .badge.keep { background: #f1f5f9; color: #475569; }
+
+  /* callout numbers */
+  .callout {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    font-size: 0.6rem;
+    font-weight: 700;
+    background: var(--accent);
+    color: #fff;
+    flex-shrink: 0;
+    margin-right: 0.35rem;
+  }
+  .callout.r { background: var(--red); }
+  .callout.g { background: var(--green); }
+
+  .spacer { height: 0.5rem; }
+  .spacer.lg { height: 1rem; }
+
+  /* ===== CHANGE SUMMARY BAR ===== */
+  .change-bar {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    background: var(--frame);
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .change-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.72rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    font-weight: 500;
+  }
+  .change-chip.fix { background: #fee2e2; color: #b91c1c; }
+  .change-chip.new { background: #dcfce7; color: #15803d; }
+  .change-chip.keep { background: #f1f5f9; color: #475569; }
+</style>
+</head>
+<body>
+
+<h1 class="main-title">Site Wireframe Mockups — Eli Goldberger Portfolio</h1>
+<p class="subtitle">Proposed layout changes per page. Red = fix existing issue · Green = new element · Gray = keep as-is.</p>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('home')">Home</div>
+  <div class="tab" onclick="switchTab('projects')">Projects</div>
+  <div class="tab" onclick="switchTab('resume')">Resume</div>
+  <div class="tab" onclick="switchTab('fun')">Fun Stuff</div>
+</div>
+
+<!-- ==================== HOME ==================== -->
+<div class="panel active" id="panel-home">
+  <div class="browser">
+    <div class="browser-bar">
+      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+      <div class="url-bar">localhost:4321/</div>
+    </div>
+    <div class="wf-layout">
+      <div class="wf-frame">
+        <!-- Nav -->
+        <div class="wf-nav">
+          <div class="wf-logo"></div>
+          <div class="wf-nav-links">
+            <div class="wf-nav-link active" style="width:2.5rem"></div>
+            <div class="wf-nav-link" style="width:3.5rem"></div>
+            <div class="wf-nav-link" style="width:3rem"></div>
+            <div class="wf-nav-link" style="width:3.5rem"></div>
+          </div>
+        </div>
+
+        <!-- Hero — PROPOSED: photo circle + text side by side, full width -->
+        <div class="wf-section">
+          <div class="wf-section-label">HERO</div>
+          <div class="row" style="align-items:center; gap:1.5rem; padding: 0.25rem 0;">
+            <!-- Circle headshot -->
+            <div class="wf-circle" style="width:6rem; height:6rem; flex-shrink:0;"></div>
+            <!-- Text block -->
+            <div class="col">
+              <div class="wf-line lg w-40" style="margin-bottom:0.5rem;"></div>
+              <div class="wf-line w-80" style="margin-bottom:0.25rem;"></div>
+              <div class="wf-line w-80" style="margin-bottom:0.25rem;"></div>
+              <div class="wf-line w-60"></div>
+              <div class="spacer"></div>
+              <div class="row" style="gap:0.5rem; margin-top:0.35rem;">
+                <div class="wf-pill" style="width:5rem;"></div>
+                <div class="wf-pill" style="width:3rem;"></div>
+                <div class="wf-pill" style="width:3.5rem;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- About + Goals — 2 col -->
+        <div class="wf-section">
+          <div class="wf-section-label">ABOUT</div>
+          <div class="row">
+            <div class="col">
+              <div class="wf-line lg w-40" style="margin-bottom:0.5rem;"></div>
+              <div class="wf-line w-80"></div>
+              <div class="wf-line w-80"></div>
+              <div class="wf-line w-60"></div>
+              <div class="wf-line w-80"></div>
+            </div>
+            <div class="col">
+              <div class="wf-line lg w-30" style="margin-bottom:0.5rem;"></div>
+              <div style="display:flex; align-items:center; gap:0.35rem; margin-bottom:0.3rem;">
+                <div style="width:0.4rem; height:0.4rem; background:var(--accent); border-radius:50%;"></div>
+                <div class="wf-line w-80" style="margin:0;"></div>
+              </div>
+              <div style="display:flex; align-items:center; gap:0.35rem; margin-bottom:0.3rem;">
+                <div style="width:0.4rem; height:0.4rem; background:var(--accent); border-radius:50%;"></div>
+                <div class="wf-line w-60" style="margin:0;"></div>
+              </div>
+              <div style="display:flex; align-items:center; gap:0.35rem; margin-bottom:0.3rem;">
+                <div style="width:0.4rem; height:0.4rem; background:var(--accent); border-radius:50%;"></div>
+                <div class="wf-line w-70" style="margin:0;"></div>
+              </div>
+              <div style="display:flex; align-items:center; gap:0.35rem;">
+                <div style="width:0.4rem; height:0.4rem; background:var(--accent); border-radius:50%;"></div>
+                <div class="wf-line w-80" style="margin:0;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 highlight cards — PROPOSED: colored left border + icon area -->
+        <div class="wf-section">
+          <div class="wf-section-label">HIGHLIGHTS</div>
+          <div class="row">
+            <div class="wf-card accent-left">
+              <div style="display:flex; align-items:center; gap:0.4rem; margin-bottom:0.4rem;">
+                <div style="width:1rem; height:1rem; background:var(--accent-light); border-radius:3px; flex-shrink:0;"></div>
+                <div class="wf-line w-60" style="margin:0;"></div>
+              </div>
+              <div class="wf-line sm w-80"></div>
+              <div class="wf-line sm w-60"></div>
+            </div>
+            <div class="wf-card accent-left" style="border-left-color:#8b5cf6;">
+              <div style="display:flex; align-items:center; gap:0.4rem; margin-bottom:0.4rem;">
+                <div style="width:1rem; height:1rem; background:#ede9fe; border-radius:3px; flex-shrink:0;"></div>
+                <div class="wf-line w-60" style="margin:0;"></div>
+              </div>
+              <div class="wf-line sm w-80"></div>
+              <div class="wf-line sm w-50"></div>
+            </div>
+            <div class="wf-card accent-left" style="border-left-color:#10b981;">
+              <div style="display:flex; align-items:center; gap:0.4rem; margin-bottom:0.4rem;">
+                <div style="width:1rem; height:1rem; background:#d1fae5; border-radius:3px; flex-shrink:0;"></div>
+                <div class="wf-line w-50" style="margin:0;"></div>
+              </div>
+              <div class="wf-line sm w-80"></div>
+              <div class="wf-line sm w-40"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wf-footer">
+          <div class="wf-line"></div><div class="wf-line"></div><div class="wf-line"></div>
+        </div>
+      </div>
+
+      <div class="wf-notes">
+        <h3>Changes</h3>
+
+        <div class="note fix">
+          <div class="note-label"><span class="callout r">1</span>Fix</div>
+          <strong>Hero layout alignment</strong> — headshot floats left but text flows below it at full width. Make the hero a proper side-by-side flex row with the text filling remaining space using <code>flex:1</code>.
+        </div>
+
+        <div class="note new">
+          <div class="note-label"><span class="callout g">2</span>New</div>
+          <strong>Circular headshot</strong> — switch from rounded-rect to a circle (<code>border-radius:50%</code>) with a subtle ring/shadow. More professional, less snapshot-feel.
+        </div>
+
+        <div class="note fix">
+          <div class="note-label"><span class="callout r">3</span>Fix</div>
+          <strong>Excessive top gap</strong> — ~3rem dead space between nav and content. Remove or reduce <code>padding-top</code> on the container and main wrapper.
+        </div>
+
+        <div class="note new">
+          <div class="note-label"><span class="callout g">4</span>New</div>
+          <strong>Highlight cards</strong> — add a colored left-border accent and a small icon per card (win/wrench/mail icon). Currently they're plain outline boxes with no visual differentiation.
+        </div>
+
+        <div class="note keep">
+          <div class="note-label">Keep</div>
+          Two-column About / Goals layout, footer, nav — all good.
+        </div>
+      </div>
+    </div>
+
+    <div class="change-bar">
+      <span class="change-chip fix">Fix hero flex layout</span>
+      <span class="change-chip new">Circular headshot + ring</span>
+      <span class="change-chip fix">Remove top dead space</span>
+      <span class="change-chip new">Card accent borders + icons</span>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PROJECTS ==================== -->
+<div class="panel" id="panel-projects">
+  <div class="browser">
+    <div class="browser-bar">
+      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+      <div class="url-bar">localhost:4321/projects/</div>
+    </div>
+    <div class="wf-layout">
+      <div class="wf-frame">
+        <div class="wf-nav">
+          <div class="wf-logo"></div>
+          <div class="wf-nav-links">
+            <div class="wf-nav-link" style="width:2.5rem"></div>
+            <div class="wf-nav-link active" style="width:3.5rem"></div>
+            <div class="wf-nav-link" style="width:3rem"></div>
+            <div class="wf-nav-link" style="width:3.5rem"></div>
+          </div>
+        </div>
+
+        <!-- Page header -->
+        <div style="margin-bottom:0.75rem;">
+          <div class="wf-line lg w-30" style="margin-bottom:0.35rem;"></div>
+          <div class="wf-line sm w-40"></div>
+        </div>
+
+        <!-- Card 1: text left, static img right (90-day) -->
+        <div class="wf-section">
+          <div class="wf-section-label">CARD (text | image)</div>
+          <div class="row" style="align-items:stretch; gap:0;">
+            <div class="col" style="padding:0.5rem 0.75rem 0.5rem 0; border-right:1px dashed var(--border);">
+              <div class="wf-line lg w-80" style="margin-bottom:0.4rem;"></div>
+              <div class="wf-line sm w-80"></div>
+              <div class="wf-line sm w-80"></div>
+              <div class="wf-line sm w-60"></div>
+              <div class="spacer"></div>
+              <div class="row" style="gap:0.25rem; flex-wrap:wrap; margin-top:0.3rem;">
+                <div class="wf-pill" style="width:3.5rem;"></div>
+                <div class="wf-pill" style="width:2.5rem;"></div>
+              </div>
+              <div style="margin-top:0.5rem;">
+                <div class="wf-btn" style="width:5rem; height:1.3rem;"></div>
+              </div>
+            </div>
+            <div style="width:40%; flex-shrink:0; padding-left:0;">
+              <!-- PROPOSED: static screenshot, NOT live iframe -->
+              <div class="wf-img" style="height:7rem; margin-left:0.75rem; display:flex;align-items:center;justify-content:center;">
+                <span style="font-size:0.6rem; color:var(--text-light); font-weight:600;">STATIC SCREENSHOT</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: image left, text right (Hydreon reversed) -->
+        <div class="wf-section">
+          <div class="wf-section-label">CARD (image | text) — reversed</div>
+          <div class="row" style="align-items:stretch; gap:0;">
+            <div style="width:40%; flex-shrink:0;">
+              <div class="wf-img" style="height:7rem; margin-right:0.75rem;"></div>
+            </div>
+            <div class="col" style="padding:0.5rem 0 0.5rem 0; border-left:1px dashed var(--border); padding-left:0.75rem;">
+              <div class="wf-line lg w-80" style="margin-bottom:0.4rem;"></div>
+              <div class="wf-line sm w-80"></div>
+              <div class="wf-line sm w-60"></div>
+              <div class="spacer"></div>
+              <div class="row" style="gap:0.25rem; flex-wrap:wrap; margin-top:0.3rem;">
+                <div class="wf-pill" style="width:3rem;"></div>
+                <div class="wf-pill" style="width:4rem;"></div>
+                <div class="wf-pill" style="width:3.5rem;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Consistent image height note -->
+        <div style="font-size:0.7rem; color:var(--text-light); margin-bottom:0.5rem; text-align:center;">
+          · · · remaining 3 cards follow same pattern · · ·
+        </div>
+
+        <!-- Gallery section -->
+        <div class="wf-section">
+          <div class="wf-section-label">GALLERY</div>
+          <div class="wf-line lg w-40" style="margin-bottom:0.35rem;"></div>
+          <div class="wf-line sm w-60" style="margin-bottom:0.5rem;"></div>
+          <div class="row">
+            <div class="wf-img" style="height:3.5rem; flex:1;"></div>
+            <div class="wf-img" style="height:3.5rem; flex:1;"></div>
+            <div class="wf-img" style="height:3.5rem; flex:1;"></div>
+            <div class="wf-img" style="height:3.5rem; flex:1;"></div>
+          </div>
+        </div>
+
+        <div class="wf-footer">
+          <div class="wf-line"></div><div class="wf-line"></div><div class="wf-line"></div>
+        </div>
+      </div>
+
+      <div class="wf-notes">
+        <h3>Changes</h3>
+
+        <div class="note fix">
+          <div class="note-label"><span class="callout r">1</span>Fix</div>
+          <strong>Live iframe in card</strong> — the 90-Day card embeds the live Vercel app as an iframe, which loads slowly, overflows, and causes layout shift. Replace with a <strong>static screenshot</strong> from the public images folder.
+        </div>
+
+        <div class="note fix">
+          <div class="note-label"><span class="callout r">2</span>Fix</div>
+          <strong>Inconsistent image heights</strong> — card images (phone screenshot vs landscape Minecraft vs eBay product) all have different aspect ratios. Apply a <strong>fixed card image height</strong> (e.g. 14rem) with <code>object-fit: cover</code> uniformly.
+        </div>
+
+        <div class="note new">
+          <div class="note-label"><span class="callout g">3</span>New</div>
+          <strong>Add a static 90-day screenshot</strong> — take a screenshot of the showcase at <code>my-90-day-showcase.vercel.app</code> and save it to <code>public/images/30-day/</code> to use as the card image.
+        </div>
+
+        <div class="note keep">
+          <div class="note-label">Keep</div>
+          Two-column card layout (text + image), reversed cards, tech pills, gallery sections — all working well.
+        </div>
+      </div>
+    </div>
+
+    <div class="change-bar">
+      <span class="change-chip fix">Replace iframe with screenshot</span>
+      <span class="change-chip fix">Uniform card image height</span>
+      <span class="change-chip new">90-day static screenshot asset</span>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== RESUME ==================== -->
+<div class="panel" id="panel-resume">
+  <div class="browser">
+    <div class="browser-bar">
+      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+      <div class="url-bar">localhost:4321/resume/</div>
+    </div>
+    <div class="wf-layout">
+      <div class="wf-frame">
+        <div class="wf-nav">
+          <div class="wf-logo"></div>
+          <div class="wf-nav-links">
+            <div class="wf-nav-link" style="width:2.5rem"></div>
+            <div class="wf-nav-link" style="width:3.5rem"></div>
+            <div class="wf-nav-link active" style="width:3rem"></div>
+            <div class="wf-nav-link" style="width:3.5rem"></div>
+          </div>
+        </div>
+
+        <!-- Toolbar (keep, just minor tweak) -->
+        <div style="display:flex; justify-content:flex-end; gap:0.5rem; margin-bottom:0.5rem;">
+          <div style="height:1.2rem; width:4.5rem; background:var(--frame); border-radius:3px; border:1px solid var(--border);"></div>
+          <div style="height:1.2rem; width:3.5rem; background:var(--frame); border-radius:3px; border:1px solid var(--border);"></div>
+        </div>
+
+        <!-- Paper -->
+        <div style="background:#fff; border:1px solid #dde1e6; border-radius:3px; padding:1.5rem; box-shadow:0 4px 16px rgba(0,0,0,0.06); position:relative;">
+          <!-- UST logo top-right -->
+          <div style="position:absolute; top:0.75rem; right:1rem; width:1.5rem; height:1.75rem; background:var(--img-box); border-radius:2px;"></div>
+
+          <!-- Name -->
+          <div class="wf-line lg" style="width:10rem; margin:0 auto 0.3rem;"></div>
+          <!-- Contact rows -->
+          <div class="wf-line sm" style="width:80%; margin:0 auto 0.15rem;"></div>
+          <div class="wf-line sm" style="width:60%; margin:0 auto 0.4rem;"></div>
+          <div style="border-top:1.5px solid #1e293b; margin-bottom:0.5rem;"></div>
+
+          <!-- Summary -->
+          <div class="wf-line sm w-30" style="margin-bottom:0.3rem; background:#94a3b8;"></div>
+          <div class="wf-line sm w-80" style="margin-bottom:0.15rem;"></div>
+          <div class="wf-line sm w-60" style="margin-bottom:0.5rem;"></div>
+
+          <!-- Relevant Experience -->
+          <div class="wf-line sm w-40" style="margin-bottom:0.3rem; background:#94a3b8;"></div>
+          <div class="row" style="justify-content:space-between; margin-bottom:0.15rem;">
+            <div class="wf-line w-30" style="margin:0;"></div>
+            <div class="wf-line sm w-20" style="margin:0;"></div>
+          </div>
+          <div class="wf-line sm w-20" style="margin-bottom:0.2rem;"></div>
+          <div class="wf-line sm w-80" style="margin-bottom:0.1rem;"></div>
+          <div class="wf-line sm w-70" style="margin-bottom:0.1rem;"></div>
+          <div class="wf-line sm w-60" style="margin-bottom:0.5rem;"></div>
+
+          <!-- Education -->
+          <div class="wf-line sm w-25" style="margin-bottom:0.3rem; background:#94a3b8;"></div>
+          <div class="row" style="justify-content:space-between; margin-bottom:0.15rem; align-items:center;">
+            <!-- PROPOSED: no comma before St. Paul -->
+            <div style="display:flex; gap:0.35rem; align-items:center;">
+              <div class="wf-line" style="width:5rem; margin:0;"></div>
+              <div class="wf-line sm" style="width:3rem; margin:0;"></div>
+            </div>
+            <div class="wf-line sm w-15" style="margin:0;"></div>
+          </div>
+          <div class="wf-line sm w-50" style="margin-bottom:0.5rem;"></div>
+
+          <!-- Additional Experience -->
+          <div class="wf-line sm w-40" style="margin-bottom:0.3rem; background:#94a3b8;"></div>
+          <!-- BCD row — PROPOSED: smaller logo, better aligned -->
+          <div class="row" style="justify-content:space-between; align-items:center; margin-bottom:0.15rem;">
+            <div style="display:flex; align-items:center; gap:0.3rem;">
+              <div style="width:0.9rem; height:0.9rem; background:var(--img-box); border-radius:2px; flex-shrink:0;"></div>
+              <div class="wf-line w-30" style="margin:0;"></div>
+            </div>
+            <div class="wf-line sm w-20" style="margin:0;"></div>
+          </div>
+          <div class="wf-line sm w-20" style="margin-bottom:0.15rem;"></div>
+          <div class="wf-line sm w-80" style="margin-bottom:0.1rem;"></div>
+          <div class="wf-line sm w-70" style="margin-bottom:0.1rem;"></div>
+          <div class="wf-line sm w-60" style="margin-bottom:0.4rem;"></div>
+
+          <!-- Skills -->
+          <div class="wf-line sm w-20" style="margin-bottom:0.3rem; background:#94a3b8;"></div>
+          <div class="wf-line sm w-80" style="margin-bottom:0.1rem;"></div>
+          <div class="wf-line sm w-70" style="margin-bottom:0.1rem;"></div>
+          <div class="wf-line sm w-40"></div>
+        </div>
+
+        <div class="wf-footer" style="margin-top:0.75rem;">
+          <div class="wf-line"></div><div class="wf-line"></div><div class="wf-line"></div>
+        </div>
+      </div>
+
+      <div class="wf-notes">
+        <h3>Changes</h3>
+
+        <div class="note fix">
+          <div class="note-label"><span class="callout r">1</span>Fix</div>
+          <strong>Comma before "St. Paul, MN"</strong> — in the Education entry the HTML renders as "University of St. Thomas<strong>, </strong> St. Paul, MN" with a stray comma-space. Fix the HTML in the entry row.
+        </div>
+
+        <div class="note fix">
+          <div class="note-label"><span class="callout r">2</span>Fix</div>
+          <strong>Big Chuck Data logo too large</strong> — the inline <code>.inline-logo</code> (1.25rem height) visually overpowers the company name text. Reduce to <code>1rem</code> and vertically center it with the text baseline.
+        </div>
+
+        <div class="note keep">
+          <div class="note-label">Keep</div>
+          Paper layout, gray background stage, UST logo top-right, toolbar (Download / Print), PDF section toggle, all section content — looking great overall.
+        </div>
+      </div>
+    </div>
+
+    <div class="change-bar">
+      <span class="change-chip fix">Fix stray comma in education row</span>
+      <span class="change-chip fix">Reduce BCD inline logo size</span>
+      <span class="change-chip keep">Paper + toolbar design — keep</span>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FUN ==================== -->
+<div class="panel" id="panel-fun">
+  <div class="browser">
+    <div class="browser-bar">
+      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+      <div class="url-bar">localhost:4321/fun/</div>
+    </div>
+    <div class="wf-layout">
+      <div class="wf-frame">
+        <div class="wf-nav">
+          <div class="wf-logo"></div>
+          <div class="wf-nav-links">
+            <div class="wf-nav-link" style="width:2.5rem"></div>
+            <div class="wf-nav-link" style="width:3.5rem"></div>
+            <div class="wf-nav-link" style="width:3rem"></div>
+            <div class="wf-nav-link active" style="width:3.5rem"></div>
+          </div>
+        </div>
+
+        <!-- Page header -->
+        <div style="margin-bottom:0.75rem;">
+          <div class="wf-line lg w-25" style="margin-bottom:0.35rem;"></div>
+          <div class="wf-line sm w-50"></div>
+        </div>
+
+        <!-- Hobbies + Links 2-col -->
+        <div class="wf-section">
+          <div class="wf-section-label">HOBBIES + LINKS</div>
+          <div class="row" style="gap:1rem;">
+            <div class="col">
+              <div class="wf-line lg w-40" style="margin-bottom:0.5rem;"></div>
+              <div class="wf-line sm w-80" style="margin-bottom:0.2rem;"></div>
+              <div class="wf-line sm w-80" style="margin-bottom:0.2rem;"></div>
+              <div class="wf-line sm w-70" style="margin-bottom:0.2rem;"></div>
+              <div class="wf-line sm w-80" style="margin-bottom:0.4rem;"></div>
+              <div style="display:flex; flex-direction:column; gap:0.2rem; padding-left:0.75rem;">
+                <div style="display:flex; align-items:center; gap:0.35rem;">
+                  <div style="width:0.35rem; height:0.35rem; background:var(--box); border-radius:50%;"></div>
+                  <div class="wf-line sm w-70" style="margin:0;"></div>
+                </div>
+                <div style="display:flex; align-items:center; gap:0.35rem;">
+                  <div style="width:0.35rem; height:0.35rem; background:var(--box); border-radius:50%;"></div>
+                  <div class="wf-line sm w-40" style="margin:0;"></div>
+                </div>
+                <div style="display:flex; align-items:center; gap:0.35rem;">
+                  <div style="width:0.35rem; height:0.35rem; background:var(--box); border-radius:50%;"></div>
+                  <div class="wf-line sm w-50" style="margin:0;"></div>
+                </div>
+              </div>
+            </div>
+            <!-- PROPOSED: expanded links column with multiple cards -->
+            <div class="col">
+              <div class="wf-line lg w-40" style="margin-bottom:0.5rem;"></div>
+              <div class="wf-card" style="margin-bottom:0.4rem;">
+                <div style="display:flex; align-items:center; gap:0.4rem; margin-bottom:0.3rem;">
+                  <div style="width:1rem; height:1rem; background:#24292e; border-radius:3px;"></div>
+                  <div class="wf-line w-30" style="margin:0;"></div>
+                </div>
+                <div class="wf-line sm w-70"></div>
+              </div>
+              <div class="wf-card" style="margin-bottom:0.4rem;">
+                <div style="display:flex; align-items:center; gap:0.4rem; margin-bottom:0.3rem;">
+                  <div style="width:1rem; height:1rem; background:var(--accent); border-radius:3px;"></div>
+                  <div class="wf-line w-40" style="margin:0;"></div>
+                </div>
+                <div class="wf-line sm w-60"></div>
+              </div>
+              <div class="wf-card">
+                <div style="display:flex; align-items:center; gap:0.4rem; margin-bottom:0.3rem;">
+                  <div style="width:1rem; height:1rem; background:#0077b5; border-radius:3px;"></div>
+                  <div class="wf-line w-30" style="margin:0;"></div>
+                </div>
+                <div class="wf-line sm w-50"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trade Show gallery (keep) -->
+        <div class="wf-section">
+          <div class="wf-section-label">GALLERY</div>
+          <div class="wf-line lg w-40" style="margin-bottom:0.3rem;"></div>
+          <div class="wf-line sm w-70" style="margin-bottom:0.5rem;"></div>
+          <div class="row">
+            <div style="flex:1; border:1px solid var(--border); border-radius:4px; overflow:hidden;">
+              <div class="wf-img" style="height:5rem;"></div>
+              <div style="padding:0.3rem 0.5rem;"><div class="wf-line sm w-60"></div></div>
+            </div>
+            <div style="flex:1; border:1px solid var(--border); border-radius:4px; overflow:hidden;">
+              <div class="wf-img" style="height:5rem;"></div>
+              <div style="padding:0.3rem 0.5rem;"><div class="wf-line sm w-80"></div></div>
+            </div>
+            <div style="flex:1; border:1px solid var(--border); border-radius:4px; overflow:hidden;">
+              <div class="wf-img" style="height:5rem;"></div>
+              <div style="padding:0.3rem 0.5rem;"><div class="wf-line sm w-50"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wf-footer">
+          <div class="wf-line"></div><div class="wf-line"></div><div class="wf-line"></div>
+        </div>
+      </div>
+
+      <div class="wf-notes">
+        <h3>Changes</h3>
+
+        <div class="note fix">
+          <div class="note-label"><span class="callout r">1</span>Fix</div>
+          <strong>Links column is sparse</strong> — currently only one card with a GitHub link. The right column looks unfinished and unbalanced vs the long hobbies paragraph. Fill with 3 link cards: GitHub, 90-Day Showcase, LinkedIn.
+        </div>
+
+        <div class="note new">
+          <div class="note-label"><span class="callout g">2</span>New</div>
+          <strong>Icon per link card</strong> — add a small colored icon block (GitHub dark, showcase blue, LinkedIn blue) to each card to give them visual identity and weight.
+        </div>
+
+        <div class="note keep">
+          <div class="note-label">Keep</div>
+          Trade Show gallery grid, hobbies content, two-column layout, page header — all working fine.
+        </div>
+      </div>
+    </div>
+
+    <div class="change-bar">
+      <span class="change-chip fix">Fill sparse Links column</span>
+      <span class="change-chip new">GitHub + Showcase + LinkedIn cards</span>
+      <span class="change-chip new">Icon per link card</span>
+      <span class="change-chip keep">Gallery — keep</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  function switchTab(page) {
+    document.querySelectorAll('.tab').forEach((t, i) => {
+      t.classList.toggle('active', ['home','projects','resume','fun'][i] === page);
+    });
+    document.querySelectorAll('.panel').forEach(p => {
+      p.classList.toggle('active', p.id === 'panel-' + page);
+    });
+  }
+</script>
+</body>
+</html>

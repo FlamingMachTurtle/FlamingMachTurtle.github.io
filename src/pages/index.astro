@@ -1,0 +1,194 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="Portfolio"
+	description="Computer Science major who likes turning ideas into working tools fast. Developer portfolio showcasing automation, mobile, and web projects."
+>
+	<div class="container">
+			<header class="hero">
+				<div class="headshot-frame">
+					<img src="/images/headshot.jpg" alt="Headshot of Eli Goldberger" width="256" height="256" loading="eager" />
+				</div>
+				<div class="hero-text">
+					<h1>Eli Goldberger</h1>
+					<p class="lead">
+						Computer Science major who likes turning ideas into working tools fast. I enjoy helping people and
+						small businesses with practical tech, but my main goal would be to eventually be able to
+						contribute and help in medical or mental health spaces.
+					</p>
+					<p class="contact-line">
+						eligoldberger5@gmail.com · <a href="https://www.linkedin.com/in/eli-goldberger-b3b440212/" target="_blank" rel="noopener">LinkedIn</a>
+						· <a href="https://github.com/FlamingMachTurtle" target="_blank" rel="noopener">GitHub</a>
+					</p>
+				</div>
+			</header>
+
+			<section class="about-section">
+				<div class="two-col">
+					<div>
+						<h2>About Me</h2>
+						<p>
+							I'm a hands-on developer who enjoys figuring out what actually helps someone and building it.
+							All the way from shipping automation pipelines on tight deadlines to designing intuitive
+							interfaces for mobile projects. From my projects, I've picked up experience with backend
+							integrations, api integrations, token management, image processing, and business optimization
+							tools, and I'm excited to bring my experience and mindset to future medical and mental health
+							tech.
+						</p>
+					</div>
+					<div>
+						<h2>Goals</h2>
+						<ul>
+							<li>Continue to develop my rapid-prototyping skills so I can launch solutions people actually use with short deadlines.</li>
+							<li>Help people and businesses worldwide with thoughtful automation when it makes sense.</li>
+							<li>Contribute to medical or mental health technology projects.</li>
+							<li>Grow my LLC into a sustainable consultancy that supports clients end to end.</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+		<div class="stat-row" role="list">
+			<div class="stat" role="listitem">
+				<span class="stat-label">Latest Work</span>
+				<span class="stat-value">eBay pipeline — 100% production success rate</span>
+			</div>
+			<div class="stat-divider" aria-hidden="true"></div>
+			<div class="stat" role="listitem">
+				<span class="stat-label">Focus</span>
+				<span class="stat-value">Automation, rapid prototyping, and practical client tools</span>
+			</div>
+			<div class="stat-divider" aria-hidden="true"></div>
+			<div class="stat" role="listitem">
+				<span class="stat-label">Availability</span>
+				<span class="stat-value">Open to consulting &amp; collaboration — <a href="mailto:eligoldberger5@gmail.com">get in touch</a></span>
+			</div>
+		</div>
+	</div>
+</BaseLayout>
+
+<style>
+	.container {
+		max-width: 64rem;
+		margin: 0 auto;
+		padding: 1rem 1.5rem 2rem;
+	}
+
+	.hero {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2rem;
+		align-items: center;
+		margin-bottom: 2.5rem;
+	}
+
+	.headshot-frame {
+		flex-shrink: 0;
+	}
+	.headshot-frame img {
+		width: 10rem;
+		height: 10rem;
+		border-radius: 50%;
+		display: block;
+		object-fit: cover;
+		box-shadow: 0 0 0 3px #e2e8f0, 0 0 0 5px #fff;
+	}
+
+	.hero-text {
+		flex: 1;
+		min-width: 0;
+	}
+	.hero-text h1 {
+		margin: 0 0 0.75rem;
+		font-size: 2rem;
+	}
+	.lead {
+		font-size: 1.125rem;
+		line-height: 1.6;
+		margin: 0 0 1rem;
+	}
+	.contact-line {
+		margin: 0;
+		font-size: 0.95rem;
+	}
+
+	.about-section {
+		margin-bottom: 3rem;
+	}
+	.two-col {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 2rem;
+	}
+	@media (max-width: 640px) {
+		.two-col {
+			grid-template-columns: 1fr;
+		}
+	}
+	.about-section h2 {
+		margin: 0 0 0.75rem;
+		font-size: 1.25rem;
+	}
+	.about-section p,
+	.about-section ul {
+		margin: 0;
+		line-height: 1.6;
+	}
+	.about-section ul {
+		padding-left: 1.5rem;
+	}
+
+	.stat-row {
+		display: flex;
+		align-items: stretch;
+		gap: 0;
+		padding-top: 1.75rem;
+		border-top: 1px solid #e2e8f0;
+	}
+	.stat {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+		padding: 0 2rem 0 0;
+	}
+	.stat:last-of-type {
+		padding-right: 0;
+	}
+	.stat-label {
+		font-size: 0.68rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.09em;
+		color: #94a3b8;
+	}
+	.stat-value {
+		font-size: 0.92rem;
+		color: #334155;
+		line-height: 1.45;
+	}
+	.stat-value a {
+		color: inherit;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+	.stat-value a:hover {
+		color: #0f172a;
+	}
+	.stat-divider {
+		width: 1px;
+		background: #e2e8f0;
+		margin: 0 2rem 0 0;
+		flex-shrink: 0;
+	}
+	@media (max-width: 640px) {
+		.stat-row {
+			flex-direction: column;
+			gap: 1.25rem;
+		}
+		.stat { padding: 0; }
+		.stat-divider { display: none; }
+	}
+</style>
