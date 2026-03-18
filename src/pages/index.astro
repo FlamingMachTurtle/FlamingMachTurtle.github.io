@@ -50,6 +50,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 				</div>
 			</section>
 
+		<nav class="explore" aria-label="Explore this site">
+			<a href="/projects/" class="explore-item">
+				<span class="explore-label">Projects</span>
+				<span class="explore-desc">See what I've built — automation, apps, and experiments</span>
+			</a>
+			<a href="/resume/" class="explore-item">
+				<span class="explore-label">Resume</span>
+				<span class="explore-desc">Experience, education, and skills at a glance</span>
+			</a>
+			<a href="/fun/" class="explore-item">
+				<span class="explore-label">Fun Stuff</span>
+				<span class="explore-desc">Hobbies, trade shows, and side interests</span>
+			</a>
+		</nav>
+
 		<div class="stat-row" role="list">
 			<div class="stat" role="listitem">
 				<span class="stat-label">Latest Work</span>
@@ -113,9 +128,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		margin: 0;
 		font-size: 0.95rem;
 	}
-
 	.about-section {
-		margin-bottom: 3rem;
+		margin-bottom: 2.5rem;
 	}
 	.two-col {
 		display: grid;
@@ -138,6 +152,44 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 	}
 	.about-section ul {
 		padding-left: 1.5rem;
+	}
+
+	.explore {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1px;
+		background: #e2e8f0;
+		border: 1px solid #e2e8f0;
+		border-radius: 6px;
+		overflow: hidden;
+		margin-bottom: 2.5rem;
+	}
+	.explore-item {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3rem;
+		padding: 1rem 1.25rem;
+		background: #f8fafc;
+		text-decoration: none;
+		transition: background 0.15s ease;
+	}
+	.explore-item:hover {
+		background: #fff;
+	}
+	.explore-label {
+		font-size: 0.85rem;
+		font-weight: 700;
+		color: #1e293b;
+	}
+	.explore-desc {
+		font-size: 0.8rem;
+		line-height: 1.4;
+		color: #64748b;
+	}
+	@media (max-width: 640px) {
+		.explore {
+			grid-template-columns: 1fr;
+		}
 	}
 
 	.stat-row {
