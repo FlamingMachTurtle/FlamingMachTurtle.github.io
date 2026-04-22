@@ -78,5 +78,6 @@ _legacy/                 # Archived Foundation/jQuery site (reference only)
 
 ## Changelog
 
+- **2026-04-21:** Resume page contact city updated to Eagan, MN (HTML resume tab)
 - **2025-03-18:** Astro v6 migration complete — shared layout, content collections, GitHub Actions deploy; legacy files moved to `_legacy/`
 - **2025-03-18:** Overhaul audit branch; full site audit and research prompt added
